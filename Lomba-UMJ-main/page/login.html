@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="../assets/styleLogin.css" />
+    <link rel="shortcut icon" href="../assets/img/logo 1.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <main>
+        <section class="login">
+            <h1>Login</h1>
+            <h5>Selamat datang kembali!</h5>
+            <div class="login-form">
+                <form action="" method="post">
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Masukkan Email">
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Masukkan Password">
+                    </div>
+                    <div class="input-group">
+                        <div class="box-ingat">
+                            <input type="checkbox" id="remember-me" name="remember-me">
+                            <label for="remember-me">Ingat Saya!</label>
+                        </div>
+                        <div class="lupa-password">
+                            <b class="lupa-password"><a href="lupapassword.html">Lupa Password?</a></b>
+                        </div>
+                    </div>
+                    <button type="submit" value="Login" class="submit-button">Masuk</button>
+                    <button type="button" class="daftar-button"
+                        onclick="window.location.href='../index.html#form-daftar'">Belum Punya Akun?</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="gambar">
+            <img src="../assets/img/login-banner.png" alt="Login Beasiswa HMIF">
+        </section>
+
+        <script>
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                if (email === '' || password === '') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Harap isi email dan password!',
+                        customClass: {
+                            confirmButton: 'swal2-confirm-button-custom'
+                        },
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: 'Anda berhasil login.',
+                        customClass: {
+                            confirmButton: 'swal2-confirm-button-custom'
+                        },
+                    }).then(() => {
+                        if (email === 'admin@admin.com') {
+                            window.location.href = '../page/adminDashboard.html';
+                        } else {
+                            window.location.href = '../page/dashboard.html';
+                        }
+                    });
+                }
+            });
+        </script>
+
+    </main>
+</body>
+
+</html>
